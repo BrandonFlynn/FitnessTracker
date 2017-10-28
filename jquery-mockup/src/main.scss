@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+$primary-background: rgb(24, 183, 223);
+$monospace: "Courier New", Courier, monospace;
+
+header {
+    background: $primary-background;
+    margin-bottom: 10px;
+}
+body {
+    background-color: $primary-background;
+}
+
+.card {
+    .btn-primary {
+        font-family: $monospace;
+    } 
+    h4 {
+        text-align: center;
+    }   
+}
+.thisIsaP{
+    text-align:center; font-size:300%; background-color:rgb(74, 9, 226);
+}
+.mainPageTitle{
+    text-align:center;font-size:500%; color:rgb(255, 102, 0); background-color:aqua;
+
+}
