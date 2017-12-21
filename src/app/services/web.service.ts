@@ -21,6 +21,13 @@ export class WebService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
+
+  typeAheadBox(){
+    this.http.get(BASE_URL + '/exercises').subscribe(exercises => {
+      this.exercises = exercises;
+  })}
+
+
   getExercises() {
     this.http.get(BASE_URL + '/exercises').subscribe(exercises => {
       this.exercises = exercises;

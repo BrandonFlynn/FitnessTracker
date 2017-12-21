@@ -6,29 +6,70 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
 let exercises = [
-    {
-        name: 'Running'
-    },
-    {
-        name: 'Jumping'
-    },
-    {
-        name: 'Swimming'
-    }];
+  {name: 'Running'}, {name: 'Jumping'}, {name: 'Swimming'},
+  {name: 'Curling'}, {name: 'Pushups'}, {name: 'Crunches'},
+  {name: 'Rows'}, {name: 'Jumping Jacks'}, {name: 'Flys'}
+
+];
 
 let users = [{email: 'a@a.com', password: '123', firstName: 'Brandon', lastName: 'Flynn'},
-             {email: 'b@b.com', password: '123', firstName: 'A', lastName: 'B'},
-             {email: 'c@c.com', password: '123', firstName: 'A', lastName: 'B'}];
+  {email: 'b@b.com', password: '123', firstName: 'A', lastName: 'B'},
+  {email: 'c@c.com', password: '123', firstName: 'A', lastName: 'B'}];
 
 let server = express();
 server.use(bodyParser.json())
-server.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-  });
+server.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
+
+server.post('/api/exercises',(req,res)=>{
+
+  var substringMatcher = function(strs) {
+    return function findMatches(q, cb) {
+      var matches, substrRegex;
+
+      // an array that will be populated with substring matches
+      matches = [];
+
+      // regex used to determine if a string contains the substring `q`
+      substrRegex = new RegExp(q, 'i');
+
+      // iterate through the pool of strings and for any string that
+      // contains the substring `q`, add it to the `matches` array
+      $.each(strs, function(i, str) {
+        if (substrRegex.test(str)) {
+          matches.push(str);
+        }
+      });
+
+      cb(matches);
+    };
+  };
+
+
+  $('#the-basics .typeahead').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    },
+    {
+      name: 'exercises',
+      source: substringMatcher(exercises)
+    });
+
+})
+
+
+
+
+
+
 
 server.get('/api/exercises', (req, res) => res.json(exercises));
+
+
 server.get('/api/myexercises', (req, res) => {
   if (!req.header('Authorization')) return sendMessage(res, false, 'You are unathorize. Run and hide.');
 
@@ -39,6 +80,8 @@ server.get('/api/myexercises', (req, res) => {
 
   res.json(foundUser.exercises);
 });
+
+
 server.post('/api/exercisesCompleted', (req, res) => {
   if (!req.header('Authorization')) return sendMessage(res, false, 'You are unathorize. Run and hide.');
 
@@ -66,7 +109,7 @@ server.get('/api/users', (req, res) => {
   }
 });
 
-server.post('/api/register',(req,res) => {
+server.post('/api/register', (req, res) => {
   let user = req.body;
 
   let userFound = findUserByEmail(user);
@@ -90,7 +133,7 @@ let user = {
   password: '123'
 };
 
-server.post('/api/login',(req,res)=>{
+server.post('/api/login', (req, res) => {
   let user = req.body;
 
   let userFound = findUserByEmail(user);
@@ -114,7 +157,7 @@ server.post('/api/login',(req,res)=>{
 });
 
 function signToken(email) {
-  return jwt.sign({email},'123');
+  return jwt.sign({email}, '123');
 }
 
 function findUserByEmail(user) {
@@ -126,14 +169,13 @@ function findUserByEmail(user) {
 }
 
 function sendMessage(res, success, message, name, token) {
-  res.json({ success, message, name, token});
+  res.json({success, message, name, token});
 }
 
 server.use("/client", express.static("./jquery-mockup"))
 //server.use("/game", game);
 //server.use("/old", handler.main);
 //server.use("/fitness/routines", (req, res)=> res.send([{name: 'AAA', duration: 2}, {}, {}])
-
 
 
 server.listen(3001);

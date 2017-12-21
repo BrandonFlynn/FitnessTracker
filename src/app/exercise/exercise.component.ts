@@ -9,11 +9,17 @@ import { WebService } from '../services/web.service';
 export class ExerciseComponent implements OnInit {
 
   currentExercise;
-
+  exercises;
   constructor(public webService: WebService) {}
+
 
   ngOnInit(){
     this.webService.getExercises();
+  }
+
+  addTotypeAheadBox(exercises){
+    this.exercises === exercises;
+
   }
 
   addToExercisesCompleted(exercise) {

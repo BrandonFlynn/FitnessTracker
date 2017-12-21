@@ -16,6 +16,7 @@ import { UsersComponent} from "./users/users.component";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { UsersComponent} from "./users/users.component";
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    UsersComponent
+    UsersComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { UsersComponent} from "./users/users.component";
       {path: 'home', component: HomeComponent, pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-      {path: 'users', component: UsersComponent}
+      {path: 'users', component: UsersComponent},
+
 
     ])
   ],
