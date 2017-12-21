@@ -10,7 +10,7 @@
             </div>
 
             <ul class="list-group list-group-flush">
-                <li *ngFor="let exercise of webService.exercises" 
+                <li *ngFor="let exercise of webService.exercises"
                     class="list-group-item list-group-item-action"
                     (click)="addToExercisesCompleted(exercise)"
                     [ngClass]="{'active': isClicked(exercise)}">
@@ -20,13 +20,13 @@
     </div>
 
     <div class="card">
-            
-        <div class="card-body">      
+
+        <div class="card-body">
             <h4 class="card-title m-0">Exercises Done</h4>
         </div>
-            
+
         <ul class="list-group list-group-flush">
-            <li *ngFor="let exercise of webService.exercisesCompleted" 
+            <li *ngFor="let exercise of webService.exercisesCompleted"
                 class="list-group-item list-group-item-action"
             >
                 {{exercise.name}}
@@ -34,5 +34,5 @@
         </ul>
     </div>
 
-    <button (click)="postToServer()" type="button" class="btn btn-success">Success</button>
+    <button (click)="postToServer()" type="button" class="btn btn-success">Send exercises to "Welcome 'name'"</button>
 </div>

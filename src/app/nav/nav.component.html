@@ -11,12 +11,13 @@
       <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active">Home</a>
         <a class="nav-item nav-link" routerLink="/exercise" routerLinkActive="active">Exercises</a>
-        <a *ngIf="!webService.isAuthenticated" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
         <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
       </div>
 
       <div class="navbar-nav">
+
         <a *ngIf="webService.isAuthenticated" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Welcome {{webService.name}}</a>
+        <a *ngIf="!webService.isAuthenticated" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
         <a (click)="webService.logout()" *ngIf="webService.isAuthenticated" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Logout</a>
       </div>
     </div>
