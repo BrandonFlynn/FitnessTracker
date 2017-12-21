@@ -1,18 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  
-    <a class="navbar-brand" href="#">Fitness</a>
-    
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home">Fitness</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        
-        <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="signup.html">Signup</a>
-        <a class="nav-item nav-link" href="#">Rules</a>
-        <a class="nav-item nav-link disabled" href="#">Disabled</a>
 
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <div class="navbar-nav mr-auto">
+        <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+        <a class="nav-item nav-link" routerLink="/exercise" routerLinkActive="active">Exercises</a>
+        <a *ngIf="!webService.isAuthenticated" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+      </div>
+
+      <div class="navbar-nav">
+        <a *ngIf="webService.isAuthenticated" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Welcome {{webService.name}}</a>
+        <a (click)="webService.logout()" *ngIf="webService.isAuthenticated" class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Logout</a>
       </div>
     </div>
-  </nav>
+
+  </div>
+</nav>

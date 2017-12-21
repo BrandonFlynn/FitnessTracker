@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="card">
+
+    <div class="card-body">
+      <h4 class="card-title m-0">Users Online</h4>
+    </div>
+
+    <ul *ngIf="!!loggedInUsers" class="list-group list-group-flush">
+      <li *ngFor="let user of loggedInUsers"
+          class="list-group-item list-group-item-action">
+        {{user.firstName + ' ' + user.lastName}}
+      </li>
+    </ul>
+
+    <ul *ngIf="!!myExercises" class="list-group list-group-flush">
+      <li *ngFor="let exercise of myExercises"
+          class="list-group-item list-group-item-action">
+        {{exercise.name}}
+      </li>
+    </ul>
+  </div>
+</div>

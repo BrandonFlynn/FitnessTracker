@@ -1,0 +1,37 @@
+<div class="container">
+
+
+  <form class="card">
+    <div class="card-body">
+      <div class="form-group">
+        <div clas="card" align="center">Registration</div>
+        <label for="firstName" align="Left">First Name:</label>
+        <input [(ngModel)]="user.firstName" type="text" class="form-control"
+               id="firstName" placeholder="Enter first name" name="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName" align="Left">Last Name:</label>
+        <input [(ngModel)]="user.lastName" type="text" class="form-control"
+               id="lastName" placeholder="Enter last name" name="lastName">
+      </div>
+      <div class="form-group">
+        <label for="email" align="Left">Email:</label>
+        <input [(ngModel)]="user.email" type="email" class="form-control"
+               id="email" placeholder="Enter Email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input [(ngModel)]="user.password" type="password" class="form-control" id="password" placeholder="Password" name="password">
+      </div>
+
+      <button (click) = "register()" type="submit" class="btn btn-primary">Submit</button>
+
+
+    </div>
+  </form>
+<div>
+
+  user: {{user | json}}
+</div>
+
+</div>
