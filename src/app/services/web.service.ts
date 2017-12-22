@@ -22,10 +22,10 @@ export class WebService {
   }
 
 
-  typeAheadBox(){
-    this.http.get(BASE_URL + '/exercises').subscribe(exercises => {
-      this.exercises = exercises;
-  })}
+  postRecommendedExercises(exerciseName) {
+
+    return this.http.post(BASE_URL +'/exercises', {exerciseName});
+  }
 
 
   getExercises() {

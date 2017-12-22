@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebService } from '../services/web.service';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-exercise',
@@ -10,6 +11,9 @@ export class ExerciseComponent implements OnInit {
 
   currentExercise;
   exercises;
+  searchBox = '';
+  recommendedExercises;
+
   constructor(public webService: WebService) {}
 
 
@@ -17,10 +21,16 @@ export class ExerciseComponent implements OnInit {
     this.webService.getExercises();
   }
 
-  addTotypeAheadBox(exercises){
-    this.exercises === exercises;
+  searchExercises() {
+    let observable = this.webService.postRecommendedExercises(this.searchBox);
+    observable.subscribe(res => {
 
+      this.recommendedExercises = res;
+      if(!this.searchBox) this.recommendedExercises = [];
+    })
   }
+
+
 
   addToExercisesCompleted(exercise) {
     this.currentExercise = exercise;
